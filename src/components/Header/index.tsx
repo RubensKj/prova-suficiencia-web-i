@@ -29,7 +29,7 @@ const Header: React.FC = () => {
               <MaterialIcon
                 aria-label="create employee"
                 hasRipple
-                icon='add'
+                icon='person_add'
                 onClick={() => push('/employee')}
               />
             </TopAppBarIcon>
