@@ -7,7 +7,7 @@ import {
 import App from '../App';
 import Employee from '../pages/Employee';
 // Pages
-import FormEmployee from '../pages/FormEmployee';
+import CreateEmployee from '../pages/CreateEmployee';
 import Main from '../pages/Main';
 
 
@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
       <Switch>
         <Route path='/' element={<App />}>
           <Route index element={<Main />} />
-          <Route path='employee' element={<FormEmployee />} />
+          <Route path='employee' element={<CreateEmployee />} />
           <Route path='employee/:employeeId' element={<Employee />} />
         </Route>
       </Switch>
