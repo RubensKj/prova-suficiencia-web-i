@@ -89,8 +89,8 @@ const Main: React.FC = () => {
 
   return (
     <Container>
-      <Headline4>Funcionários</Headline4>
       <Content>
+        <Headline4>Funcionários</Headline4>
         <div className='top-table-actions'>
           <div className='input-search-area'>
             <InputSearch onSubmit={onSearch} placeholder="Pesquise por um id..." />
