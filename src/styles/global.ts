@@ -35,4 +35,8 @@ export default createGlobalStyle`
   .ant-notification {
     top: 75px !important;
   }
+
+  .ant-pagination {
+    margin-bottom: 50px !important;
+  }
 `;
