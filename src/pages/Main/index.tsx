@@ -68,7 +68,7 @@ const Main: React.FC = () => {
         setError(null);
       }).catch(error => {
         removeEmployees();
-        setError('Sistema está com alguma instabilidades, aguarde um momento e tente novamente.')
+        setError('Sistema está com algumas instabilidades, aguarde um momento e tente novamente.')
       }).finally(() => {
         setIsLoading(false);
       });

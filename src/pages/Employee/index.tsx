@@ -69,7 +69,7 @@ const Employee: React.FC = () => {
       }).catch(error => {
         notification['error']({
           message: 'Erro no sistema',
-          description: 'Ocorreu um erro durante comunicação com sistema...'
+          description: 'Ocorreu um erro durante comunicação com o sistema...'
         });
       });
   }
