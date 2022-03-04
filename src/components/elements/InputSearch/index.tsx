@@ -22,10 +22,15 @@ const InputSearch: React.FC<InputSearchProps> = ({ onSubmit, placeholder }) => {
   return (
     <Container>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={placeholder ? placeholder : 'Digite para pesquisar...'} />
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder={placeholder ? placeholder : 'Digite para pesquisar...'}
+          aria-label="pesquisar pelo id do funcionário"
+        />
         <Button type='submit'>
           <MaterialIcon
-            aria-label="busca funcionário por id"
+            aria-label="botão para buscar funcionário por id"
             hasRipple
             icon='search'
             onClick={() => { }}

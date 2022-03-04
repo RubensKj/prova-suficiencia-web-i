@@ -46,9 +46,9 @@ const FormEmployee: React.FC<FormEmployeeProps> = ({ onSubmit, initialData }) =>
   return (
     <Container>
       <form onSubmit={(e) => handleFormSubmit(e)}>
-        <Input label='Nome Funcionário' value={employeeName} onChange={(text) => setEmployeeName(text)} clearField={() => setEmployeeName('')} required />
-        <Input label='Salário Funcionário' type='number' value={employeeSalary} onChange={(text) => setEmployeeSalary(text)} clearField={() => setEmployeeSalary('')} required />
-        <Input label='Idade Funcionário' type='number' value={employeeAge} onChange={(text) => setEmployeeAge(text)} clearField={() => setEmployeeAge('')} required />
+        <Input label='Nome' value={employeeName} onChange={(text) => setEmployeeName(text)} clearField={() => setEmployeeName('')} required />
+        <Input label='Salário' type='number' value={employeeSalary} onChange={(text) => setEmployeeSalary(text)} clearField={() => setEmployeeSalary('')} required />
+        <Input label='Idade' type='number' value={employeeAge} onChange={(text) => setEmployeeAge(text)} clearField={() => setEmployeeAge('')} required />
         <Button type='submit'>Salvar</Button>
       </form>
     </Container>

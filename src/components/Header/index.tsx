@@ -27,7 +27,7 @@ const Header: React.FC = () => {
           <TopAppBarSection align='end' role='toolbar'>
             <TopAppBarIcon actionItem tabIndex={0}>
               <MaterialIcon
-                aria-label="create employee"
+                aria-label="criar funcionário"
                 hasRipple
                 icon='person_add'
                 onClick={() => push('/employee')}
