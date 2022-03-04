@@ -7,6 +7,8 @@ import '@material/react-fab/dist/fab.css';
 import '@material/react-line-ripple/dist/line-ripple.css';
 import '@material/react-text-field/dist/text-field.css';
 import '@material/react-typography/dist/typography.css';
+import "@material/react-dialog/dist/dialog.css";
+import './ant.css';
 
 export default createGlobalStyle`
   * {

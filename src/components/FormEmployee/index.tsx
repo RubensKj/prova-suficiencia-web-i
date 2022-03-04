@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EmployeeModel } from '../../models/employee';
 import Button from '../elements/Button';
 import Input from '../elements/Input';
@@ -10,9 +10,15 @@ interface FormEmployeeProps {
 }
 
 const FormEmployee: React.FC<FormEmployeeProps> = ({ onSubmit, initialData }) => {
-  const [employeeName, setEmployeeName] = useState<string>(initialData?.employee_name ? initialData.employee_name : '');
-  const [employeeSalary, setEmployeeSalary] = useState<string>(initialData?.employee_salary ? initialData.employee_salary.toString() : '');
-  const [employeeAge, setEmployeeAge] = useState<string>(initialData?.employee_age ? initialData.employee_age.toString() : '');
+  const [employeeName, setEmployeeName] = useState<string>('');
+  const [employeeSalary, setEmployeeSalary] = useState<string>('');
+  const [employeeAge, setEmployeeAge] = useState<string>('');
+
+  useEffect(() => {
+    setEmployeeName(initialData?.employee_name ? initialData?.employee_name : '');
+    setEmployeeSalary(initialData?.employee_salary ? initialData.employee_salary.toString() : '');
+    setEmployeeAge(initialData?.employee_age ? initialData.employee_age.toString() : '');
+  }, [initialData]);
 
   function resetFields() {
     setEmployeeName('');
