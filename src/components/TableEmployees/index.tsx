@@ -1,9 +1,9 @@
 import MaterialIcon from '@material/react-material-icon';
-import { TopAppBarIcon } from '@material/react-top-app-bar';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EmployeeModel } from '../../models/employee';
 import DeleteDialog from '../DeleteDialog';
+import Button from '../elements/Button';
 import Table from '../elements/Table';
 import { ActionsButtonWrapper, Container } from './styles';
 
@@ -17,6 +17,7 @@ const employeeTableColumns = [
     title: 'Nome',
     dataIndex: 'employee_name',
     key: 'employee_name',
+    render: (text) => <strong>{text}</strong>,
   },
   {
     title: 'Salário',
@@ -34,6 +35,7 @@ const employeeTableColumns = [
   {
     title: 'Ações',
     key: 'action',
+    className: 'actions-th',
     render: (text, record: EmployeeModel) => <ActionsButton record={record} />,
   },
 ];
@@ -58,22 +60,18 @@ const ActionsButton: React.FC<ActionsButtonProps> = ({ record }) => {
     <React.Fragment>
       <DeleteDialog isOpen={isOpen} toggleIsOpen={toggleDialog} employee={record} />
       <ActionsButtonWrapper>
-        <TopAppBarIcon actionItem tabIndex={0}>
+        <Button onClick={() => openUpdatePage(record.id)}>
           <MaterialIcon
             aria-label="editar funcionário"
-            hasRipple
             icon='edit'
-            onClick={() => openUpdatePage(record.id)}
           />
-        </TopAppBarIcon>
-        <TopAppBarIcon actionItem tabIndex={1}>
+        </Button>
+        <Button onClick={() => toggleDialog()}>
           <MaterialIcon
             aria-label="remover funcionário"
-            hasRipple
             icon='delete'
-            onClick={() => toggleDialog()}
           />
-        </TopAppBarIcon>
+        </Button>
       </ActionsButtonWrapper>
     </React.Fragment>
   );

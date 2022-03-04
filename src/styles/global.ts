@@ -31,4 +31,8 @@ export default createGlobalStyle`
     font: 16px 16px 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased !important;
   }
+
+  .ant-notification {
+    top: 75px !important;
+  }
 `;

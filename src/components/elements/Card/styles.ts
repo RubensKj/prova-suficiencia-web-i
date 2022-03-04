@@ -8,6 +8,10 @@ export const Container = styled.main`
   border: 1px solid #ecebed;
 
   padding: 15px 18px;
+
+  @media only screen and (max-width: 480px)  {
+    border: none !important;
+  }
 `;
 
 export const Header = styled.header`

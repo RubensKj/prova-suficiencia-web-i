@@ -6,7 +6,7 @@ import FormEmployee from '../../components/FormEmployee';
 import { EmployeeModel } from '../../models/employee';
 import api from '../../services/api';
 import { getEmployees, updateEmployees } from '../../services/employeesLocal';
-import { Main } from './styles';
+import { Container } from './styles';
 
 
 const Employee: React.FC = () => {
@@ -75,11 +75,11 @@ const Employee: React.FC = () => {
   }
 
   return (
-    <Main>
+    <Container>
       <Card title='Atualizar Funcionário'>
         <FormEmployee onSubmit={handleUpdateEmployee} initialData={employee ? employee : undefined} />
       </Card>
-    </Main>
+    </Container>
   );
 }
 
