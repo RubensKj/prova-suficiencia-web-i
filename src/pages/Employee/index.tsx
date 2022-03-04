@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import Card from '../../components/elements/Card';
@@ -30,13 +31,21 @@ const Employee: React.FC = () => {
       .then(response => {
         setEmployee(response.data.data);
       }).catch(error => {
-
+        notification['error']({
+          message: 'Erro no sistema',
+          description: 'Ocorreu um erro ao buscar informações do funcionário...'
+        });
       });
 
   }, [employeeId]);
 
-  function pushToMainPage() {
+  function onSuccess() {
     navigate(`/`);
+
+    notification['success']({
+      message: 'Funcionário atualizado!',
+      description: 'Funcionário foi atualizado com sucesso!'
+    });
   }
 
   function handleUpdateEmployee(data: EmployeeModel) {
@@ -48,7 +57,7 @@ const Employee: React.FC = () => {
     let update = updateEmployees(employeeWithChanges);
 
     if (update) {
-      pushToMainPage();
+      onSuccess();
       return;
     }
 
@@ -56,9 +65,12 @@ const Employee: React.FC = () => {
       .then(response => {
         if (!response.data.data) return;
 
-        pushToMainPage();
+        onSuccess();
       }).catch(error => {
-        console.log(error);
+        notification['error']({
+          message: 'Erro no sistema',
+          description: 'Ocorreu um erro durante comunicação com sistema...'
+        });
       });
   }
 

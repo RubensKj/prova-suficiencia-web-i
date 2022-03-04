@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/elements/Card';
@@ -10,11 +11,20 @@ import { Main } from './styles';
 const CreateEmployee: React.FC = () => {
   const navigate = useNavigate();
 
+  function onSuccess() {
+    navigate(`/`);
+
+    notification['success']({
+      message: 'Funcionário salvo!',
+      description: 'Funcionário foi salvo com sucesso!'
+    });
+  }
+
   function handleSaveEmployee(data: EmployeeModel) {
     let created = saveEmployee(data);
 
     if (created) {
-      pushToMainPage();
+      onSuccess();
       return;
     }
 
@@ -22,14 +32,13 @@ const CreateEmployee: React.FC = () => {
       .then(response => {
         if (!response.data.data) return;
 
-        pushToMainPage();
+        onSuccess();
       }).catch(error => {
-        console.log(error)
+        notification['error']({
+          message: 'Erro no sistema',
+          description: 'Ocorreu um erro durante comunicação com sistema...'
+        });
       })
-  }
-
-  function pushToMainPage() {
-    navigate(`/`);
   }
 
   return (

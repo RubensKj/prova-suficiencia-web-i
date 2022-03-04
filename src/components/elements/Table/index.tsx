@@ -1,9 +1,13 @@
 import { Table as TableAnt, TableProps } from 'antd';
 import React from 'react';
 
-const Table: React.FC<TableProps<any>> = ({ columns, dataSource }) => {
+const Table: React.FC<TableProps<any>> = ({ columns, dataSource, ...props }) => {
   return (
-    <TableAnt dataSource={dataSource} columns={columns} />
+    <TableAnt
+      dataSource={dataSource}
+      columns={columns}
+      {...props}
+    />
   );
 }
 

@@ -82,15 +82,17 @@ const ActionsButton: React.FC<ActionsButtonProps> = ({ record }) => {
 interface TableEmployeesProps {
   rowKey?: string;
   data?: EmployeeModel[];
+  isLoading?: boolean;
 }
 
-const TableEmployees: React.FC<TableEmployeesProps> = ({ rowKey, data }) => {
+const TableEmployees: React.FC<TableEmployeesProps> = ({ rowKey, data, isLoading }) => {
   return (
     <Container>
       <Table
         rowKey={rowKey}
         columns={employeeTableColumns}
         dataSource={data ? data : []}
+        loading={isLoading}
       />
     </Container>
   );

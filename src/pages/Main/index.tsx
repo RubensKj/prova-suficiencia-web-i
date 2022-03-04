@@ -1,5 +1,7 @@
+import MaterialIcon from '@material/react-material-icon';
 import {
-  Headline4
+  Headline4,
+  Body1
 } from '@material/react-typography';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +15,8 @@ import { Container, Content } from './styles';
 
 const Main: React.FC = () => {
   const [employees, setEmployees] = useState<EmployeeModel[]>(getEmployees());
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -25,17 +29,29 @@ const Main: React.FC = () => {
 
     if (!searchValue) {
       setEmployees(localEmployee);
+
+      if (localEmployee.length === 0) {
+        getEmployeesFromAPI();
+      }
+
+      setIsLoading(false);
       return;
     }
 
     if (localEmployee.length === 0) {
+      setIsLoading(true);
+
       api.get(`/employee/${searchValue}`)
         .then(response => {
           let foundEmployee = response.data.data;
 
           setEmployees(foundEmployee ? [foundEmployee] : []);
+          setError(null);
         }).catch(error => {
           removeEmployees();
+          setError('Sistema está com alguma instabilidades, aguarde um momento para pesquisar e tente novamente.')
+        }).finally(() => {
+          setIsLoading(false);
         });
     }
 
@@ -44,19 +60,31 @@ const Main: React.FC = () => {
     setEmployees(foundEmployee ? [foundEmployee] : []);
   }
 
-  useEffect(() => {
-    const localEmployees = getEmployees();
-    if (localEmployees.length > 0) return;
-
+  function getEmployeesFromAPI() {
     api.get(`/employees`)
       .then(response => {
         setEmployees(response.data.data);
         saveEmployees(response.data.data);
+        setError(null);
       }).catch(error => {
         removeEmployees();
-        console.log(error);
+        setError('Sistema está com alguma instabilidades, aguarde um momento e tente novamente.')
+      }).finally(() => {
+        setIsLoading(false);
       });
+  }
 
+  useEffect(() => {
+    const localEmployees = getEmployees();
+
+    if (localEmployees.length > 0) {
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+
+    getEmployeesFromAPI();
   }, []);
 
   return (
@@ -69,10 +97,21 @@ const Main: React.FC = () => {
           </div>
           <Button onClick={pushToCreatePage}>Novo Funcionário</Button>
         </div>
-        <TableEmployees
-          rowKey='id'
-          data={employees}
-        />
+        {!error ? (
+          <TableEmployees
+            rowKey='id'
+            data={employees}
+            isLoading={isLoading}
+          />
+        ) : (
+          <div className='error-area'>
+            <MaterialIcon
+              aria-label="erro no sistema"
+              icon='error_outline'
+            />
+            <Body1>{error}</Body1>
+          </div>
+        )}
       </Content>
     </Container>
   );

@@ -1,6 +1,7 @@
 import {
   Subtitle1
 } from '@material/react-typography';
+import { notification } from 'antd';
 import React from 'react';
 import { EmployeeModel } from '../../models/employee';
 import api from '../../services/api';
@@ -32,7 +33,10 @@ const DeleteDialog: React.FC<DeleteDialogProps> = ({ isOpen, toggleIsOpen, emplo
 
         reloadPageAfterDelete();
       }).catch(error => {
-        console.log(error)
+        notification['error']({
+          message: 'Erro no sistema',
+          description: 'Ocorreu um erro ao deletar o funcionário...'
+        });
       });
   }
 

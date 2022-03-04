@@ -12,6 +12,24 @@ export const Container = styled.div`
 
   margin-top: 38px;
 
+  .error-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 75px;
+
+    i {
+      font-size: 48px;
+    }
+
+    p {
+      margin-top: 8px;
+      text-align: center;
+    }
+  }
+
   @media only screen and (max-width: 720px)  {
     h1, h2, h3, h4, h5, h6 {
       padding: 0 15px;
