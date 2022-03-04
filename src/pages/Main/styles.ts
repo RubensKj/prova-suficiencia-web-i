@@ -11,6 +11,12 @@ export const Container = styled.div`
   margin: 0 auto;
 
   margin-top: 38px;
+
+  @media only screen and (max-width: 720px)  {
+    h1, h2, h3, h4, h5, h6 {
+      padding: 0 15px;
+    }
+  }
 `;
 
 export const Content = styled.main`
